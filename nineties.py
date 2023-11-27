@@ -1,0 +1,21 @@
+word_list = [
+'pearl jam',
+'nirvana',
+'soundgarden',
+'smashing pumpkins',
+'weezer',
+'foo fighters',
+'green day',
+'alice in chains',
+'rancid',
+'red hot chili peppers',
+'nine inch nails',
+'stone temple pilots',
+'janes addiction',
+'no doubt',
+'third eye blind',
+'everclear',
+'matchbox twenty',
+'goo goo dolls',
+'the offspring'
+]
