@@ -1,67 +1,77 @@
-from tkinter import *
-from tkinter import messagebox
-from string import ascii_uppercase
 import random
+from hangman_art import stages, logo
+import hangman_words
+import marvel
+import dc
+import eighty
+import nineties
+#from replit import clear
+
+print(logo)
+game_is_finished = False
+lives = len(stages) - 1
+guessed = []
+
+choice = input("Make selection:\n 1. Marvel Characters\n 2. DC Characters\n 3. Bands in the 80's\n 4. Bands in the 90's\n 5. Generic List\n >>")
+if choice == "1":
+  word_list = marvel.word_list
+elif choice == "2":
+  word_list = dc.word_list
+elif choice == "3":
+  word_list = eighty.word_list
+elif choice == "4":
+  word_list = nineties.word_list
+elif choice == "5":
+  word_list = hangman_words.word_list
 
 
-window = Tk()
-window.title('Hangman-GUESS CITIES NAME')
-word_list= ['MUMBAI','DELHI','BANGLORE','HYDRABAD','AHMEDABAD','CHENNAI','KOLKATA','SURAT','PUNE','JAIPUR','AMRITSAR','ALLAHABAD','RANCHI',
-            'LUCKNOW','KANPUR','NAGPUR','INDORE','THANE','BHOPAL','PATNA','GHAZIABAD','AGRA','FARIDABAD','MEERUT','RAJKOT','VARANASI','SRINAGAR',
-            'RAIPUR','KOTA','JHANSI']
-            
-photos = [PhotoImage(file="images/hang0.png"), PhotoImage(file="images/hang1.png"), PhotoImage(file="images/hang2.png"),
-PhotoImage(file="images/hang3.png"), PhotoImage(file="images/hang4.png"), PhotoImage(file="images/hang5.png"),
-PhotoImage(file="images/hang6.png"), PhotoImage(file="images/hang7.png"), PhotoImage(file="images/hang8.png"),
-PhotoImage(file="images/hang9.png"), PhotoImage(file="images/hang10.png"), PhotoImage(file="images/hang11.png")]
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
 
+#Hint
+print(f'>>Pssst, use the space bar to enter a space for dual words.<<')
 
+display = []
+for _ in range(word_length):
+    display += "_"  
 
-
-
-
-def newGame():
-    global the_word_withSpaces
-    global numberOfGuesses
-    numberOfGuesses =0
+while not game_is_finished:
+    print()
+    print(f"Incorret guesses: {','.join(guessed)}")
+    print(f"The word has {word_length} letters in it. ")
+    guess = input("Guess a letter: ").lower()
+    print()
+    #Use the clear() function imported from replit to clear the output between guesses.
+    #clear()
+    input("enter to clear")
+    print("\x1B[2J")
+    print("cleared")
+    print(logo)
+    print()
     
-    the_word=random.choice(word_list)
-    the_word_withSpaces = " ".join(the_word)
-    lblWord.set(' '.join("_"*len(the_word)))
+    if guess in display:
+        print(guess)
+        print(f"You've already guessed {guess}")
 
-def guess(letter):
-	global numberOfGuesses
-	if numberOfGuesses<11:	
-		txt = list(the_word_withSpaces)
-		guessed = list(lblWord.get())
-		if the_word_withSpaces.count(letter)>0:
-			for c in range(len(txt)):
-				if txt[c]==letter:
-					guessed[c]=letter
-				lblWord.set("".join(guessed))
-				if lblWord.get()==the_word_withSpaces:
-					messagebox.showinfo("Hangman","You guessed it!")
-		else:
-			numberOfGuesses += 1
-			imgLabel.config(image=photos[numberOfGuesses])
-			if numberOfGuesses==11:
-					messagebox.showwarning("Hangman","Game Over")
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter
+    print(f"{' '.join(display)}")
 
+    if guess not in chosen_word:
+      print()
+      guessed.append(guess)
+      print(f"You guessed {guess}, that's not in the word. You lose a life. \nYou have {lives} lives left.")
+      
+      lives -= 1
+      if lives == 0:
+          game_is_finished = True
+          print("You lose.")
+          print(f"The word was {chosen_word}")
+    
+    if not "_" in display:
+        game_is_finished = True
+        print("You win.")
 
-imgLabel=Label(window)
-imgLabel.grid(row=0, column=0, columnspan=3, padx=10, pady=40)
-
-
-  
-lblWord = StringVar()
-Label(window, textvariable  =lblWord,font=('consolas 24 bold')).grid(row=0, column=3 ,columnspan=6,padx=10)
-
-n=0
-for c in ascii_uppercase:
-    Button(window, text=c, command=lambda c=c: guess(c), font=('Helvetica 18'), width=4).grid(row=1+n//9,column=n%9)
-    n+=1
-
-Button(window, text="New\nGame", command=lambda:newGame(), font=("Helvetica 10 bold")).grid(row=3, column=8)
-
-newGame()
-window.mainloop()
+    print(stages[lives])
