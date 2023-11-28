@@ -1,10 +1,9 @@
 import random
 from hangman_art import stages, logo
 import hangman_words
-import marvel
-import dc
-import eighty
-import nineties
+import fiber
+import protein
+import carbs
 #from replit import clear
 
 print(logo)
@@ -13,23 +12,20 @@ lives = len(stages) - 1
 guessed = []
 
 choice = input("Make selection:\n 1. Marvel Characters\n 2. DC Characters\n 3. Bands in the 80's\n 4. Bands in the 90's\n 5. Generic List\n >>")
-if choice == "1":
-  word_list = marvel.word_list
-elif choice == "2":
-  word_list = dc.word_list
-elif choice == "3":
-  word_list = eighty.word_list
-elif choice == "4":
-  word_list = nineties.word_list
-elif choice == "5":
-  word_list = hangman_words.word_list
+match choice:
+    case "1":
+      word_list = carbs.word_list
+    case "2":
+      word_list = fiber.word_list
+    case "3":
+      word_list = protein.word_list
 
 
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 
 #Hint
-print(f'>>Pssst, use the space bar to enter a space for dual words.<<')
+print(f'>>>Pssst, use the space bar to enter a space for dual words.<<<')
 
 display = []
 for _ in range(word_length):
@@ -37,7 +33,7 @@ for _ in range(word_length):
 
 while not game_is_finished:
     print()
-    print(f"Incorret guesses: {','.join(guessed)}")
+    print(f"Incorrect guesses: {','.join(guessed)}")
     print(f"The word has {word_length} letters in it. ")
     guess = input("Guess a letter: ").lower()
     print()

@@ -1,0 +1,23 @@
+word_list = [
+    'chicken',
+    'turkey',
+    'beef',
+    'pork',
+    'salmon',
+    'tuna',
+    'trout',
+    'cod',
+    'mackerel',
+    'shrimp',
+    'crab',
+    'lobster',
+    'tofu',
+    'tempeh',
+    'chickpeas',
+    'lentils',
+    'egg',
+    'greek yogurt',
+    'cottage cheese',
+    'nuts',
+    'beans'
+]
