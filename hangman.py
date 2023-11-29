@@ -1,7 +1,7 @@
 import random
 from hangman_art import stages, logo
 import hangman_words
-import fiber
+import fruits_veg
 import protein
 import carbs
 #from replit import clear
@@ -16,7 +16,7 @@ match choice:
     case "1":
       word_list = carbs.word_list
     case "2":
-      word_list = fiber.word_list
+      word_list = fruits_veg.word_list
     case "3":
       word_list = protein.word_list
 
