@@ -19,7 +19,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
     
     print(plate)
 
-    choice = input("Make selection:\n 1. Rice and Bread\n 2. Fruits and Vegetables\n 3. Meat and Others\n>>")
+    choice = input("Make selection(1/2/3):\n 1. Rice and Bread\n 2. Fruits and Vegetables\n 3. Meat and Others\n>>")
 
     match choice:
         case "1":
@@ -33,6 +33,11 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         case "3":
           word_list = protein.word_list
           choice = "Meat and Others"
+    
+        #if user does not select 1,2,3, prompt again, give error    
+        case default:
+          print("Invalid Input, please select 1,2, or 3")
+          continue
 
 
     chosen_word = random.choice(word_list)
@@ -61,6 +66,12 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         print("cleared")
         print(logo)
         print()
+
+        length = len(guess)
+
+        if length > 1:
+           print("Please enter 1 letter at a time")
+           continue
         
         if guess in display:
             print(guess)
