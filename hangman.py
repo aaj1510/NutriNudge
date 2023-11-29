@@ -108,8 +108,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
               case "Meat and Others":
                 protein_finished = True
     
-    print(carb_finished)
-    print(fruits_veg_finished)
-    print(protein_finished)
-
+    #print(carb_finished)
+    #print(fruits_veg_finished)
+    #print(protein_finished)
     #print(stages[lives])
