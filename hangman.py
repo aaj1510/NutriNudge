@@ -1,9 +1,8 @@
 """
 This game is a modified version of Hangman, whose rules / description 
-can be found at https://gist.github.com/lupinetti/8f89e5f33750aa7c91c3
+can be found at https://github.com/rrice2004/Python-Hangman/tree/main
 We adopted inspiration on how the gameflow would be (guessing and progress functions), and ignored
 the narrations.
-
 """
 
 import random
@@ -59,6 +58,9 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
     for _ in range(word_length):
         display += "_"  
     
+    """The code for this function was taken from: 
+    https://github.com/rrice2004/Python-Hangman/blob/main/hangman.py"""
+
     while not game_is_finished:
        
         print()
