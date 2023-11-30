@@ -1,3 +1,11 @@
+"""
+This game is a modified version of Hangman, whose rules / description 
+can be found at https://gist.github.com/lupinetti/8f89e5f33750aa7c91c3
+We adopted inspiration on how the gameflow would be (guessing and progress functions), and ignored
+the narrations.
+
+"""
+
 import random
 from hangman_art import stages, logo,plate
 import fruits_veg
