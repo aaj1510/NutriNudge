@@ -16,7 +16,7 @@ print(logo)
 lives = len(stages) - 1 #hangman stages from hangman art
 guessed = [] #create an empty list
 
-#set initilisation to default value (false)
+#set initialisation to default value (false)
 game_is_finished = False
 carb_finished = False
 fruits_veg_finished = False
@@ -118,7 +118,6 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
 
     #Gameplay starts from here:
     while not game_is_finished:
-       
         print()
         print(f"You selected:{choice}")
         print(f"Incorrect guesses: {','.join(guessed)}")
@@ -131,7 +130,6 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         print("cleared")
         print(logo)
         print()
-
         
         """Perform some data/user validation here"""
         #User input for guess cannot be > 1 letter at a time. 
@@ -140,7 +138,8 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
            print("Please enter 1 letter at a time")
            continue
         
-        #if user has already guessed the letter...
+        #if user has already guessed the letter... 
+        #does not work - pls troubleshoot 
         if guess in display:
             print(guess)
             print(f"You've already guessed {guess}")
@@ -192,7 +191,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
                     break
 
                 case "Meat and Others":
-                  run_quiz("Protein", protein_questions)
+                  booll = run_quiz("Protein", protein_questions)
                   if booll == True:
                      lives = 6
                      continue
