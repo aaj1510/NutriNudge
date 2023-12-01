@@ -75,10 +75,18 @@ def run_quiz(category, questions):
 # Call function and store questions into variables
 carbohydrates_questions, fruits_vegetables_questions, protein_questions = generate_quiz_pool()
 
+'''checkstatus = [carb_finished,fruits_veg_finished,protein_finished]
+
+for i in checkstatus:
+   if i == True:
+      print(f"{i} category is completed")'''
+
 #External while loop to check if all 3 categories are won, else, game continues until all 3 categories are won.
 while (carb_finished and fruits_veg_finished and protein_finished) != True:
     
     print(plate) #plate ascii
+    guessed = []
+    lives = 6 #reset lives to 6
 
     #get user input on category selection
     choice = input("Make selection(1/2/3):\n 1. Rice and Bread\n 2. Fruits and Vegetables\n 3. Meat and Others\n>>")
@@ -205,16 +213,21 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         #If there are no more _ , user has succesfully won this category
         if not "_" in display:
            game_is_finished = True
-           print(youwin) #print ascii 
 
            #Update category win
            match choice:
               case "Rice and Bread":
                 carb_finished = True
+                print("You won Rice and Bread!")
               case "Fruits and Vegetables":
                 fruits_veg_finished = True
+                print("You won Fruits and Vegetables!")
               case "Meat and Others":
                 protein_finished = True
+                print("You won Meat and Others!")
+
+else:
+   print(youwin) #print ascii 
 
 #print(carb_finished)
 #print(fruits_veg_finished)
