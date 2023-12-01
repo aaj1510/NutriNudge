@@ -1,9 +1,7 @@
-"""
-This game is a modified version of Hangman, whose rules / description 
+"""This game is a modified version of Hangman, whose rules / description 
 can be found at https://github.com/rrice2004/Python-Hangman/tree/main
 We adopted inspiration on how the gameflow would be (guessing and progress functions), and ignored
-the narrations.
-"""
+the narrations."""
 
 import random
 from hangman_art import stages, logo,plate
@@ -20,6 +18,59 @@ guessed = []
 carb_finished = False
 fruits_veg_finished = False
 protein_finished = False
+booll = False
+
+name = input("Hey there! What's your name?:")
+
+print(f"\nExcellent {name}!! Let's play a game called Hangman with healthy eating!")
+
+"""The following code is for the quiz part"""
+def generate_quiz_pool():
+    # Define questions and answers for each category
+    carbohydrates_questions = [
+        {"question": "Which of the following is a good source of fiber?", "options": ["a. White rice", "b. Oats", "c. Potato"], "correct_answer": "b"},
+        {"question": "What is a complex carbohydrate?", "options": ["a. Sugar", "b. Starch", "c. Both a and b"], "correct_answer": "c"},
+        {"question": "Which of the following is a whole grain?", "options": ["a. White bread", "b. Brown rice", "c. Pasta"], "correct_answer": "b"}
+    ]
+
+    fruits_vegetables_questions = [
+        {"question": "How many servings of vegetables are recommended per day?", "options": ["a. 1-2 servings", "b. 3-4 servings", "c. 5 or more servings"], "correct_answer": "c"},
+        {"question": "Which fruit is rich in potassium?", "options": ["a. Apple", "b. Banana", "c. Orange"], "correct_answer": "b"},
+        {"question": "What is a cruciferous vegetable?", "options": ["a. Tomato", "b. Broccoli", "c. Carrot"], "correct_answer": "b"}
+    ]
+
+    protein_questions = [
+        {"question": "Which of the following is a plant-based source of protein?", "options": ["a. Chicken breast", "b. Lentils", "c. Salmon"], "correct_answer": "b"},
+        {"question": "What is a complete protein source?", "options": ["a. Eggs", "b. Quinoa", "c. Both a and b"], "correct_answer": "c"},
+        {"question": "Which type of protein is found in beans?", "options": ["a. Animal-based protein", "b. Plant-based protein", "c. Fungal protein"], "correct_answer": "b"}
+    ]
+
+    return carbohydrates_questions, fruits_vegetables_questions, protein_questions
+
+def run_quiz(category, questions):
+    
+    # Randomly select a question from the pool
+    selected_question = random.choice(questions)
+
+    # Display the question and options
+    print(f"\n{category} Quiz:")
+    print(selected_question["question"])
+    for option in selected_question["options"]:
+        print(option)
+
+    # Get user input
+    user_answer = input("Your answer (a, b, or c): ").lower()
+
+    # Check if the answer is correct
+    if user_answer == selected_question["correct_answer"]:
+        print("You get 7 lives!")
+        return True
+        
+    else:
+        print(f"Incorrect. The correct answer is {selected_question['correct_answer']}.")
+
+# Generate the quiz pool
+carbohydrates_questions, fruits_vegetables_questions, protein_questions = generate_quiz_pool()
 
 
 while (carb_finished and fruits_veg_finished and protein_finished) != True:
@@ -27,7 +78,6 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
     print(plate)
 
     choice = input("Make selection(1/2/3):\n 1. Rice and Bread\n 2. Fruits and Vegetables\n 3. Meat and Others\n>>")
-
     match choice:
         case "1":
           word_list = carbs.word_list
@@ -45,8 +95,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         case default:
           print("Invalid Input, please select 1,2, or 3")
           continue
-
-
+       
     chosen_word = random.choice(word_list)
     word_length = len(chosen_word)
     game_is_finished = False
@@ -99,13 +148,46 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
           print(f"You guessed {guess}, that's not in the word. You lose a life. \nYou have {lives} lives left.")
           
           lives -= 1
-          if lives == 0:
-              print("You lose.")
-              print(f"The word was {chosen_word}")
-              #insert quiz/game for redemption
-              #reset lives == 7
-              #remove break
-              break
+          if lives == -1:
+              print("You lose. You have ")
+              print("Redeem a chance to continue, with 7 extra lives!")
+
+              match choice:
+                case "Rice and Bread":
+                  print("hello")
+                  booll = run_quiz("Carbohydrates", carbohydrates_questions)
+                  if booll == True:
+                     lives = 6
+                     continue
+                  else:
+                    carb_finished =  True
+                    fruits_veg_finished = True
+                    protein_finished = True
+                    break
+                      
+                     
+                case "Fruits and Vegetables":
+                  booll = run_quiz("Fruits and Vegetables", fruits_vegetables_questions)
+                  if booll == True:
+                     lives = 6
+                     continue
+                  else:
+                    carb_finished =  True
+                    fruits_veg_finished = True
+                    protein_finished = True
+                    break
+
+                case "Meat and Others":
+                  run_quiz("Protein", protein_questions)
+                  if booll == True:
+                     lives = 6
+                     continue
+                  else:
+                    print("YOU DIE LOGO!") #SRI HELP thanks <3
+                    carb_finished = True
+                    fruits_veg_finished = True
+                    protein_finished = True
+                    break
 
         if not "_" in display:
            game_is_finished = True
@@ -117,8 +199,8 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
                 fruits_veg_finished = True
               case "Meat and Others":
                 protein_finished = True
-    
-    #print(carb_finished)
-    #print(fruits_veg_finished)
-    #print(protein_finished)
-    #print(stages[lives])
+
+#print(carb_finished)
+#print(fruits_veg_finished)
+#print(protein_finished)
+#print(stages[lives])
