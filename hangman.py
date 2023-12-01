@@ -24,7 +24,7 @@ name = input("Hey there! What's your name?:")
 
 print(f"\nExcellent {name}!! Let's play a game called Hangman with healthy eating!")
 
-"""The following code is for the quiz part"""
+"""The following code is for the quiz"""
 def generate_quiz_pool():
     # Define questions and answers for each category
     carbohydrates_questions = [
