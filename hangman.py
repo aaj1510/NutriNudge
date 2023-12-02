@@ -127,7 +127,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
     #Gameplay starts from here:
     while not game_is_finished:
         print()
-        print(f"You selected:{choice}")
+        print(f"You selected: {choice}")
         print(f"Incorrect guesses: {','.join(guessed)}")
         print(f"The word has {word_length} letters in it. ")
         guess = input("Guess a letter: ").lower()
@@ -212,22 +212,21 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
         
         #If there are no more _ , user has succesfully won this category
         if not "_" in display:
-           game_is_finished = True
-
-           #Update category win
-           match choice:
-              case "Rice and Bread":
-                carb_finished = True
-                print("You won Rice and Bread!")
-              case "Fruits and Vegetables":
-                fruits_veg_finished = True
-                print("You won Fruits and Vegetables!")
-              case "Meat and Others":
-                protein_finished = True
-                print("You won Meat and Others!")
-
-else:
-   print(youwin) #print ascii 
+          game_is_finished = True
+          #Update category win
+          match choice:
+            case "Rice and Bread":
+              carb_finished = True
+              print("You won Rice and Bread!")
+            case "Fruits and Vegetables":
+              fruits_veg_finished = True
+              print("You won Fruits and Vegetables!")
+            case "Meat and Others":
+              protein_finished = True
+              print("You won Meat and Others!")
+        
+        if carb_finished and fruits_veg_finished and protein_finished == True:
+           print(youwin) #print ascii 
 
 #print(carb_finished)
 #print(fruits_veg_finished)
