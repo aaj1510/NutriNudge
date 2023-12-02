@@ -169,7 +169,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
 
           #After 7 chances are gone, user has a chance of redemption, with a quiz
           if lives == -1:
-              print("You lose. You have ")
+              print("You lose. You have 0 lives left")
               print("Redeem a chance to continue, with 7 extra lives!")
 
               #run the respective quizzes, according to user's initial selection of category
