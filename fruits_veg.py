@@ -2,7 +2,7 @@ word_list = [
     'broccoli',
     'carrot',
     'apple',
-    'orange'
+    'orange',
     'eggplant',
     'cabbage'
 ]

@@ -3,5 +3,5 @@ word_list = [
     'tuna',
     'shrimp',
     'crab',
-    'egg',
+    'egg'
 ]
