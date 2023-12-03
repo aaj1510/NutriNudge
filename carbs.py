@@ -5,7 +5,5 @@ word_list = [
     'millets'
     'rolled oats',
     'barley',
-    'whole wheat pasta',
     'wholemeal beehoon',
-    'wholegrain noodles'
 ]
