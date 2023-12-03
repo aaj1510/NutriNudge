@@ -1,15 +1,7 @@
 word_list = [
-    'chicken',
-    'turkey',
     'salmon',
     'tuna',
-    'trout',
-    'cod',
-    'mackerel',
     'shrimp',
     'crab',
-    'tofu',
-    'tempeh',
-    'lentils',
     'egg',
 ]
