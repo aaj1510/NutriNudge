@@ -147,10 +147,10 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
            continue
         
         #if user has already guessed the letter... 
-        #does not work - pls troubleshoot 
-        if guess in display:
-            print(guess)
+        #does not work - pls troubleshoot - DONE!
+        if guess in guessed or guess in display:
             print(f"You've already guessed {guess}")
+            continue
 
         #display letter at it's rightful position(s), if user guessed correctly
         for position in range(word_length):
@@ -169,7 +169,7 @@ while (carb_finished and fruits_veg_finished and protein_finished) != True:
 
           #After 7 chances are gone, user has a chance of redemption, with a quiz
           if lives == -1:
-              print("You lose. You have 0 lives left")
+              print("You lose.")
               print("Redeem a chance to continue, with 7 extra lives!")
 
               #run the respective quizzes, according to user's initial selection of category
